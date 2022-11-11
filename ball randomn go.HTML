@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+    <script src="https://unpkg.com/vue@2.4.3/dist/vue.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ball</title>
+    <link rel="stylesheet" href="css.CSS">
+</head>
+
+<body>
+    <div class="box" id="ball" v-bind:style="{top: topi + 'px', left: lefty + 'px'}"></div>
+
+    <script language="javascript">
+        var vm = new Vue({
+            el: '#ball',
+            data: {
+                topi: 100,
+                lefty: 100,
+                arvo: 0,
+                arvot: 0,
+            },
+            methods: {
+
+                getNumber: function() {
+                    this.arvo = Math.floor(Math.random() * 500) + 10;
+                    this.arvot = Math.floor(Math.random() * 500) + 10;
+                },
+
+
+                moveBall: function() {
+                    if (this.arvo > this.topi) {
+                        this.topi++;
+                    } else if (this.arvo < this.topi) {
+                        this.topi--;
+                    }
+
+                    if (this.arvot > this.lefty) {
+                        this.lefty++;
+                    } else if (this.arvot < this.lefty) {
+                        this.lefty--;
+                    }
+
+                    if (this.arvot == this.lefty && this.arvo == this.topi) {
+                        this.getNumber();
+                    }
+                    // this.topi = this.arvo;
+                    // this.lefty = this.arvot;
+                },
+
+
+            },
+
+            mounted: function() {
+
+                setInterval(this.moveBall, 10);
+
+                this.getNumber();
+
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>
